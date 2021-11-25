@@ -1,0 +1,19 @@
+{
+  "name": "twitter-bot",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./twitter-bot/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Bruno Peternella",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "got": "^11.8.3",
+    "oauth-1.0a": "^2.2.6",
+    "twit": "^2.2.11",
+    "twitter-lite": "^1.1.0"
+  }
+}

@@ -2,7 +2,6 @@ require('dotenv').config();
 const crypto = require('crypto');
 const OAuth = require('oauth-1.0a');
 const got = require('got');
-const endpointURL = `https://api.twitter.com/2/tweets`;
 
 const consumerKeys = {
     key: process.env.CONSUMER_KEY,
@@ -26,47 +25,44 @@ const oauth = OAuth({
 })
 
 function generateWord() {
-    got.get(process.env.GENERATE_URL_BR).then(res => {
-        if (res.statusCode === 200) {
+    try {
+        got.get(process.env.GENERATE_URL_BR).then(res => {
             let body = JSON.parse(res.body);
             return postRequest(body.word);
-        } else {
-            throw new Error('Palavra não gerada!');
-        }
-    });
-}
-
-async function postRequest(word) {
-
-    const data = {
-        "text": `${word}`
-    };
-
-    const authHeader = oauth.toHeader(oauth.authorize({
-        url: process.env.TWEETS_ENDPOINT,
-        method: 'POST'
-    }, token));
-
-    const request = await got.post(process.env.TWEETS_ENDPOINT, {
-        json: data,
-        responseType: 'json',
-        headers: {
-            Authorization: authHeader["Authorization"],
-            'user-agent': "v2CreateTweetJS",
-            'content-type': "application/json",
-            'accept': "application/json"
-        }
-    });
-
-    if (request.statusCode === 201) {
-        return console.log(`Tweet realizado! Palavra publicada: ${word}`);
-    } else {
-        throw new Error('Request Inválida!');
+        });
+    } catch (err) {
+        console.error(`Palavra não gerada! Erro: ${err.message}`);
+        next(err);
     }
 }
 
-try {
-    generateWord();
-} catch (e) {
-    console.error(`Ocorreu um erro: ${e.message}`);
+async function postRequest(word) {
+    try {
+        const data = {
+            "text": `${word}`
+        };
+
+        const authHeader = oauth.toHeader(oauth.authorize({
+            url: process.env.TWEETS_ENDPOINT,
+            method: 'POST'
+        }, token));
+
+
+        //const request = await got.post(process.env.TWEETS_ENDPOINT, {
+        await got.post(process.env.TWEETS_ENDPOINT, {
+            json: data,
+            responseType: 'json',
+            headers: {
+                Authorization: authHeader["Authorization"],
+                'user-agent': "v2CreateTweetJS",
+                'content-type': "application/json",
+                'accept': "application/json"
+            }
+        });
+        return console.log(`Tweet realizado! Palavra publicada: ${word}`)
+    } catch (err) {
+        console.error(`Requisição falhou! Erro: ${err.message}`);
+        next(err);
+    }
 }
+generateWord();

@@ -1,4 +1,4 @@
-# twitterbot-random-word
+# AupaBot
 
 <h1>Primeiros passos!</h1>
 É necessário criar uma conta na Developer Plataform do Twitter: https://developer.twitter.com/en

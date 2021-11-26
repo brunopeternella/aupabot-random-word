@@ -3,8 +3,6 @@ const crypto = require('crypto');
 const OAuth = require('oauth-1.0a');
 const got = require('got');
 const endpointURL = `https://api.twitter.com/2/tweets`;
-//const wordGeneratorURL = 'https://random-word-api.herokuapp.com/word'; //Gera palavras em inglês
-const wordGeneratorURL = 'https://api.dicionario-aberto.net/random';
 
 const consumerKeys = {
     key: process.env.CONSUMER_KEY,
@@ -28,7 +26,7 @@ const oauth = OAuth({
 })
 
 function generateWord() {
-    got.get(wordGeneratorURL).then(res => {
+    got.get(process.env.GENERATE_URL_BR).then(res => {
         if (res.statusCode === 200) {
             let body = JSON.parse(res.body);
             return postRequest(body.word);
@@ -45,11 +43,11 @@ async function postRequest(word) {
     };
 
     const authHeader = oauth.toHeader(oauth.authorize({
-        url: endpointURL,
+        url: process.env.TWEETS_ENDPOINT,
         method: 'POST'
     }, token));
 
-    const request = await got.post(endpointURL, {
+    const request = await got.post(process.env.TWEETS_ENDPOINT, {
         json: data,
         responseType: 'json',
         headers: {

@@ -1,8 +1,7 @@
 # twitterbot-random-word
 
 <h1>Primeiros passos!</h1>
-É necessário criar uma conta na Developer Plataform do Twitter.
-https://developer.twitter.com/en
+É necessário criar uma conta na Developer Plataform do Twitter: https://developer.twitter.com/en
 
 <h1>Como gerar as Keys para a autenticação (OAuth 1.0)?</h1>
 Documentação oficial: https://developer.twitter.com/en/docs/authentication/oauth-1-0a

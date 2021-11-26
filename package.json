@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "node ./aupabot/index.js --unhandled-rejections=strict",
+    "start": "node ./aupabot/index.js --unhandled-rejections=strict --trace-warnings",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Bruno Peternella",

@@ -12,8 +12,6 @@
   "dependencies": {
     "dotenv": "^10.0.0",
     "got": "^11.8.3",
-    "oauth-1.0a": "^2.2.6",
-    "twit": "^2.2.11",
-    "twitter-lite": "^1.1.0"
+    "oauth-1.0a": "^2.2.6"
   }
 }

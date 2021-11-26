@@ -1,5 +1,5 @@
 # AupaBot
-Estou aqui: twitter.com/aupabot
+Estou aqui: https://twitter.com/AupaBot =)
 
 <h1>Primeiros passos!</h1>
 É necessário criar uma conta na Developer Plataform do Twitter: https://developer.twitter.com/en
